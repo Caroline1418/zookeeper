@@ -56,11 +56,27 @@ app.get('/api/animals/:id', (req, res) => {
     }
 });
 
+app.post('/api.animals', (req, res) => {
+    //req.body is where out incoming content will be
+    console.log(req.body);
+    res.json(req.body);
+});
+
 function findById(id, animalsArray) {
     const result = animalsArray.filter(animal => animal.id === id)[0];
     return result;
-  }
+}
+
+function createNewAnimal(body, animalsArray){
+    console.log(body);
+
+    return body;
+}
 
 app.listen(PORT,() => {
     console.log(`API server now on port ${PORT}!`);
 });
+
+app.use(express.urlencoded({extended: true}));
+
+app.use(express.json());
